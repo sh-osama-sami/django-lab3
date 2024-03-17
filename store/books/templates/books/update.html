@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html'%}
+{% block 'content' %}
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4">Update Book</h1>
+            <form method="POST" action="{% url 'update_book' book.id %}"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group
+                {% if form.title.errors %} has-error {% endif %}">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}">
+                    {% for error in form.title.errors %}
+                    <span class="help-block
+                    text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+<!--                <div class="form-group-->
+<!--                {% if form.author.errors %} has-error {% endif %}">-->
+<!--                    <label for="author">Author</label>-->
+<!--                    <input type="text" class="form-control" id="author" name="author" value="{{ book.author }}">-->
+<!--                    {% for error in form.author.errors %}-->
+<!--                    <span class="help-block-->
+<!--                    text-danger">{{ error }}</span>-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+                   <div class="mb-3">
+                     <label  class="form-label">author </label>
+
+                     <select name="author" class="form-control">
+
+                        {% for author in authors %}
+                        {% if author.name == book.author.name %}
+                        <option value="{{ author.id }}" selected>{{ author.name }}</option>
+                        {% else %}
+                        <option value="{{ author.id }}">{{ author.name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                   </div>
+                <div class="form-group
+                {% if form.number_of_pages.errors %} has-error {% endif %}">
+                    <label for="number_of_pages">Number of Pages</label>
+                    <input type="number" class="form-control" id="number_of_pages" name="number_of_pages" value="{{ book.number_of_pages }}">
+                    {% for error in form.number_of_pages.errors %}
+                    <span class="help-block
+                    text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group
+                {% if form.price.errors %} has-error {% endif %}">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" value="{{ book.price }}">
+                    {% for error in form.price.errors %}
+                    <span class="help-block
+                    text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                 <img src="/media/{{ book.image }}"
+                     width="300" height="300"
+                     class="card-img-top" alt="..."/>
+                <div class="form-group
+                {% if form.image.errors %} has-error {% endif %}">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" value="{{ book.image }}">
+                    {% for error in form.image.errors %}
+                    <span class="help-block
+                    text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

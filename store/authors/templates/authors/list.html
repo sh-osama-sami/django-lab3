@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block 'content' %}
+    <h1>welcome to all authors page</h1>
+         <table class="table">
+             <tr>
+                 <th>Id</th>
+                <th>Author Name</th>
+                 <th>Show</th>
+                 <th>Edit</th>
+                 <th>Delete</th>
+            </tr>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.name }}</td>
+                    <td><a class="btn btn-info"
+                        href="{{author.show_url}}">Show
+                        </a></td>
+                    <td><a class="btn btn-warning"
+                        href="{{author.edit_url}}">Edit
+                        </a></td>
+                      <td>
+                     <form method="POST" action="{{author.delete_url}}">
+                         {% csrf_token %}
+                         <button type="submit" class="btn btn-danger">Delete</button>
+                     </form>
+                 </td>
+                </tr>
+             <tr>
+
+            {% endfor %}
+         </table>
+
+{% endblock %}

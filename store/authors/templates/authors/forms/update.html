@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block 'content' %}
+<h1> Edit author :{{form.instance}}</h1>
+<img src="{{form.instance.image_url}}" width="100" height="100">
+<form method="post"  enctype="multipart/form-data">
+
+    {% csrf_token %}
+                <div class="form-group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.image.label_tag }}
+                    {{ form.image }}
+                    {{ form.image.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.birth_date.label_tag }}
+                    {{ form.birth_date }}
+                    {{ form.birth_date.errors }}
+                </div>
+    <input type="submit" class="btn btn-success">
+    </form>
+
+<script src="{% static 'books/js/script.js'%}">
+
+</script>
+{% endblock %}

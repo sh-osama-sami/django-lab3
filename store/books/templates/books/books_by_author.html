@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html'%}
+{% block 'content' %}
+ <h1>Books by {{ author.name }}</h1>
+<a href="{% url 'authors_detail' author.id %}" class="btn btn-primary
+" >go to author profile</a>
+<div class="d-flex justify-content-center">
+     {% for book in books %}
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.number_of_pages }} pages</p>
+                            <p class="card-text">${{ book.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-md-12">
+                    <div class="alert alert-warning mt-4" role="alert">
+                        No books found for this author.
+                    </div>
+                </div>
+            {% endfor %}
+
+</div>
+
+{% endblock %}

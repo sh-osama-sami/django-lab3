@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-4">Welcome to Our Store</h1>
+      <p class="lead">Here you can buy books and more</p>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <img src="{% static 'books/images/books.jpg' %}" class="img-fluid" alt="Image">
+    </div>
+  </div>
+</div>
+{% endblock %}

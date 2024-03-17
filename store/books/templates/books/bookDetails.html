@@ -1,0 +1,25 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block 'content' %}
+<!--<h1> {{student}}</h1>-->
+<h1> Book Details </h1>
+<div class="d-flex justify-content-center">
+  <div class="card mb-3 col-md-4">
+     <img src="{{book.image_url}}"
+         width="300" height="300"
+         class="card-img-top" >
+    <div class="card-body">
+      <h5 class="card-title">Title: {{book.title}}</h5>
+      <p class="card-text">Author:<a href="
+        {% url 'books_by_author' book.author.id %}
+"> {{book.author.name}}</a> </p>
+      <p class="card-text">Price: {{book.price}}</p>
+      <p class="card-text">No.Pages: {{book.number_of_pages}}</p>
+      <p class="card-text">Created at: {{book.created_at}}</p>
+      <p class="card-text">Updated at: {{book.updated_at}}</p>
+      <a href="{% url 'list_books' %}" class="btn btn-primary">back</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
